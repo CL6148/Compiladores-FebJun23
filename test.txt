@@ -1,0 +1,33 @@
+program LexParseTest;
+var
+    int x, y, z;
+    float a[5], b[2][3];
+
+func
+int function1 () {
+    var
+        int s4;
+    s4 = 5 + 6;
+}
+void function2 (int par1, int par2, float par3) {
+    var
+    
+    par3 = -9.63 * -1.25;
+    par2 = 9 / 3;
+    par3 = -5;
+}
+
+main {
+    x = 6;
+    y = 2;
+
+    if (x >= 5) {
+        write x;
+    } else {
+        skip;
+    };
+
+    while (x == 0 || y < 4) do {
+        y = y - 1;
+    };
+}
