@@ -24,6 +24,14 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.2.1: Consideraciones Semanticas
+|  | Archivo | Descripción |
+| - | - | - |
+| ^M^ | parser.y | + #include <semantics.c> |
+| + | semantics.c | Archivo con cubo semantico
+
+- Creacion de cubo semantico
+
 ## v0.1: Lexer + Parser
 |  | Archivo | Descripción |
 | - | - | - |
@@ -35,7 +43,7 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 
 - Limpieza total de lexer y parser para uso general
 - Seguimiento de errores por medio de 'yylineno'
-- separación de 'varcte' a tipos específicos
+- Separación de 'varcte' a tipos específicos
 
 ## v0.0: Esqueleto de Lexer y Parser 'Little Duck'
 |  | Archivo | Descripción |
