@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <semantics.c>
+#include "semantics.c"
+#include "symtab.c"
 
 extern FILE *yyin;
 extern FILE *yyout;
@@ -13,7 +14,7 @@ void yyerror();
 
 %}
 
-%union semrec{
+%union {
 	int ival;
 	float fval;
 	char* id;
@@ -31,8 +32,9 @@ void yyerror();
 %token	INT FLOAT VOID
 %token	DO SKIP READ WRITE IF WHILE ELSE
 %token	NOTOP ANDOP OROP EQUOP LESSTH GREATH LESSTH_E GREATH_E
-%token	LPAREN RPAREN LBRACK RBRACK LBRACE RBRACE COLON SEMI DOT COMMA ASSIGN
-%token	VAR PROG MAIN FUNC RET
+%token	LPAREN RPAREN LBRACK RBRACK LBRACE RBRACE SEMI COMMA ASSIGN
+%token	VAR PROG MAIN FUNC
+%token	COLON RET DOT
 %token	CLASS PUB PRIV
 
 %left	ADDOP SUBOP
@@ -42,17 +44,21 @@ void yyerror();
 
 %%
 
-program: PROG ID SEMI { printf(" >----- Successful read of header\n"); }
-	variables { printf(" >----- Successful read of variables block\n"); }
-	functions MAIN { printf(" >----- Successful entry into MAIN block\n"); }
-	block { printf(" >----- Successful exit of MAIN block\n"); };
+program: PROG ID SEMI	{ printf("\t>----- Successful read of header\n"); }
+	variables			{ printf("\t>----- Successful read of variables block\n"); }
+	functions MAIN		{ printf("\t>----- Successful read of functions block\n"); }
+	block				{ printf("\t>----- Successful read of MAIN block\n"); };
 
-variables: VAR vars;
-vars: vars type vars1 vars2 SEMI | /* empty */;
+variables: VAR vars								{ printSymtab(); };
+vars: vars type vars1 vars2 SEMI 				{ clearSymtab(); }
+	| /* empty */;
 vars1: vars1 vars2 COMMA | /* empty */;
-vars2: ID
-	| ID LBRACK CTEI RBRACK
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK;
+vars2: ID										{ addVar($1, 0); }
+	| ID LBRACK CTEI RBRACK						{ addVar($1, 1);
+												  addDims($3); }
+	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ addVar($1, 2);
+												  addDims($3);
+												  addDims($6); };
 
 functions: FUNC func;
 func: func func1 | /* empty */;
@@ -65,9 +71,9 @@ parameter: par | /* empty */;
 par: par1 | par COMMA par1;
 par1: type ID;
 
-type: INT
-	| FLOAT
-	| VOID;
+type: INT		{ setType(1); }
+	| FLOAT		{ setType(2); }
+	| VOID		{ setType(-2); };
 
 block: LBRACE block1 RBRACE;
 block1: block1 statement | /* empty */;

@@ -2,7 +2,7 @@
 ### Carlos Andrés Luna Leyva A00826148
 ---
 
-La finalidad de este proyecto es crear un lenguaje orientado a objetos con las funcionalidades básicas de cualquier lenguaje de programación tal como estatutos, expresiones matemáticas, módulos locales y globales, y estructuras de datos sencillas. Para el aspecto de objetos se busca desarrollar mecanismos tal como clases, atributos, métodos, y herencia (1 solo nivel).
+La finalidad de este proyecto es crear un lenguaje orientado a objetos con las funcionalidades básicas de cualquier lenguaje de programación tal como estatutos lineales, expresiones matemáticas, módulos locales y globales, y estructuras de datos sencillas. Para el aspecto de objetos se busca desarrollar el mecanismo de atributos sencillos.
 
 El proyecto está diseñado para ser ejecutado por medio de Flex y Bison a base del lenguaje C.
 
@@ -24,10 +24,22 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.2.2: Tabla de Variables
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | + #include <symtab.c> |
+| | | + Llamada a symtab.c y sus funciones al declarar variables |
+| + | symtab.c | Archivo con tabla de variables
+
+- Creacion de Tabla de Variables
+- Pendiente modificar estructura de arreglos a pilas para facilitar manipulacion
+- Pendiente borrar estructura temporal y generar estructura global
+- Pendiente generar estructura local para funciones
+
 ## v0.2.1: Consideraciones Semanticas
 |  | Archivo | Descripción |
 | - | - | - |
-| ^M^ | parser.y | + #include <semantics.c> |
+| M | parser.y | + #include <semantics.c> |
 | + | semantics.c | Archivo con cubo semantico
 
 - Creacion de cubo semantico
@@ -35,10 +47,10 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 ## v0.1: Lexer + Parser
 |  | Archivo | Descripción |
 | - | - | - |
-| ^M^ | scanner.l |+ yylineno |
-| ^M^ | parser.y | + yylineno |
+| M | scanner.l |+ yylineno |
+| M | parser.y | + yylineno |
 | | | + UMINUS
-| | | ^M^ varcte
+| | | M varcte
 | | | - callParam
 
 - Limpieza total de lexer y parser para uso general
