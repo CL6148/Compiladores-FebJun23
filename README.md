@@ -35,7 +35,10 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 | + | stack.c | Archivo con estructura y metodos para la creación y manipulación de pilas |
 | + | intermediate.c | Archivo con pilas de ejecución |
 
-- 
+- Pendiente modificar estructura de tabla de variables a pilas
+- Pendiente insertar tabla de variables a estructura global/local permanente
+- Pendiente convertir tabla de variables a indice de memoria virtual
+- Pendiente lectura general de variables para generación de cuádruplos
 
 ## v0.2.2: Tabla de Variables
 |  | Archivo | Descripción |
