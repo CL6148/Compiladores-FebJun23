@@ -70,7 +70,7 @@ ctef	{digit}*"."{digit}+
 		yylval.ival = atoi(yytext);
 		return CTEI; }
 {ctef}	{ 
-		yylval.ival = atof(yytext);
+		yylval.fval = atof(yytext);
 		return CTEF; }
 
 [ \n\t\r\f]+	/* empty */

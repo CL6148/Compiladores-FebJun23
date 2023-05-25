@@ -5,10 +5,24 @@
 1   int
 2   float
 3   bool
-
+--------------------------------
 -1 TypeMismatch
 -2 Undef Type
 -3 Undef Operator
+--------------------------------
+1   +
+2   -
+3   *
+4   /
+5   &&
+6   ||
+7   !=
+8   ==
+9   <
+10  >
+11  <=
+12  >=
+
 */
 
 int semantic_cube(int operation, int type1, int type2) {
@@ -140,26 +154,3 @@ int semantic_cube(int operation, int type1, int type2) {
             break;
     }
 }
-/*
-int main(void) {
-    for (int i = 0; i <= 3; i++) {
-        for (int j = 0; j <= 3; j++) {
-            printf("+\t%d\t%d\t:\t%d\n", i, j, semantic_cube(1,i,j));
-            printf("-\t%d\t%d\t:\t%d\n", i, j, semantic_cube(2,i,j));
-            printf("*\t%d\t%d\t:\t%d\n", i, j, semantic_cube(3,i,j));
-            printf("/\t%d\t%d\t:\t%d\n", i, j, semantic_cube(4,i,j));
-            printf("&&\t%d\t%d\t:\t%d\n", i, j, semantic_cube(5,i,j));
-            printf("||\t%d\t%d\t:\t%d\n", i, j, semantic_cube(6,i,j));
-            printf("!=\t%d\t%d\t:\t%d\n", i, j, semantic_cube(7,i,j));
-            printf("==\t%d\t%d\t:\t%d\n", i, j, semantic_cube(8,i,j));
-            printf("<\t%d\t%d\t:\t%d\n", i, j, semantic_cube(9,i,j));
-            printf(">\t%d\t%d\t:\t%d\n", i, j, semantic_cube(10,i,j));
-            printf("<=\t%d\t%d\t:\t%d\n", i, j, semantic_cube(11,i,j));
-            printf(">=\t%d\t%d\t:\t%d\n", i, j, semantic_cube(12,i,j));
-            printf("Undef\t\t\t:\t%d\n\n", semantic_cube(13,i,j));
-        }
-        printf("\n**********************************\n");
-    }
-    
-}
-*/

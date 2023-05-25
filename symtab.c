@@ -11,11 +11,6 @@
     addrID  ->  address is defined in virtual machine after sending the list
                 of global/local variables and corresponding types
 
-    
-    1. Verify var in symtab     ->      return bool
-    2. Add var to symtab        ->      verify existence, add if false
-    3. Search var               ->      verify existence, return var if true
-
     When reading variables, add info to temporary arrays/stacks to hold.
     Once the variables block is done reading, transfer temporary info into
     permanent stack (global and function locals) and delete the temporary
@@ -31,7 +26,7 @@ int counter = 0;
 int dimCounter = 0;
 int currType = -1;
 
-char *nameID[99][1];    // 99 max entries; 10 max characters per entry
+char *nameID[99][1];
 int type[99];
 int dimSize[99];
 int dims[99];
@@ -41,28 +36,16 @@ int verifyVar(char *name) {
     for (int i = 0; i < counter; i++) {
         compare = strcmp(name, nameID[i][0]);
         if (compare == 0) {
-            printf("\tmatch found\n");
-            return 1;
+            return i;
         }
     }
-    return 0;
+    return -1;
 }
-
-/*
-var
-    int x, y, z;
-    float a;
-
-1. upon reading the type, call setType
-2. add variables using addVar after each ID is read
-3. after reading ; call clearType
-4. proceed to next line until end of variable block
-*/
 
 // no variables with the same name allowed even if the types are different
 void addVar(char *name, int dSize) {
     int verify = verifyVar(name);
-    if (verify == 0) {
+    if (verify == -1) {
         nameID[counter][0] = name;
         type[counter] = currType;
         dimSize[counter] = dSize;

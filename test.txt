@@ -11,10 +11,9 @@ int function1 () {
 }
 void function2 (int par1, int par2, float par3) {
     var
-    
-    par3 = -9.63 * -1.25;
-    par2 = 9 / 3;
-    par3 = -5;
+        par3 = -9.63 * -1.25;
+        par2 = 9 / 3;
+        par3 = -5;
 }
 
 main {

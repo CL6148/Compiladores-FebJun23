@@ -4,6 +4,7 @@
 #include <string.h>
 #include "semantics.c"
 #include "symtab.c"
+#include "intermediate.c"
 
 extern FILE *yyin;
 extern FILE *yyout;
@@ -49,7 +50,7 @@ program: PROG ID SEMI	{ printf("\t>----- Successful read of header\n"); }
 	functions MAIN		{ printf("\t>----- Successful read of functions block\n"); }
 	block				{ printf("\t>----- Successful read of MAIN block\n"); };
 
-variables: VAR vars								{ printSymtab(); };
+variables: VAR vars;
 vars: vars type vars1 vars2 SEMI 				{ clearSymtab(); }
 	| /* empty */;
 vars1: vars1 vars2 COMMA | /* empty */;
@@ -114,20 +115,22 @@ rel1: GREATH exp
 	| NOTOP exp
 	| /* empty */;
 
+// ---------------------------------------------------------------------
+
 exp: term exp1;
-exp1: ADDOP term
-	| SUBOP term
+exp1: ADDOP term	{ iPush(&operator, 1); }	// { genQuad sum }
+	| SUBOP term	{ iPush(&operator, 2); }	// { genQuad sub }
 	| /* empty */;
 
 term: factor term1;
-term1: MULOP factor
-	| DIVOP factor
+term1: MULOP factor	{ iPush(&operator, 3); }	// { genQuad mul }
+	| DIVOP factor	{ iPush(&operator, 4); }	// { genQuad div }
 	| /* empty */;
 
 factor: LPAREN exp RPAREN
-	| varctei
-	| varctef
-	| varcteid;
+	| varctei		{ iPush(&operand, $1); }
+	| varctef		{ fPush(&operand, $1); }
+	| varcteid		{  };
 
 varctei: CTEI
 	| SUBOP CTEI %prec UMINUS { $$ = - $2; };
@@ -135,9 +138,9 @@ varctei: CTEI
 varctef: CTEF
 	| SUBOP CTEF %prec UMINUS { $$ = - $2; };
 
-varcteid: ID
-	| ID LBRACK CTEI RBRACK
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK;
+varcteid: ID									{ cPush(&operand, $1); }
+	| ID LBRACK CTEI RBRACK						{ cPush(&operand, $1); }
+	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ cPush(&operand, $1); };
 
 %%
 
@@ -157,7 +160,11 @@ int main (int argc, char *argv[]){
 	
 	printf("DEBUG:\tSuccessful parse of file\n");
 	printf("END: Compiled without error\n");
-
+/*
+	printStack(operator);
+	printf("\n");
+	printStack(operand);
+*/
 	printf("\n");
 
 	return flag;

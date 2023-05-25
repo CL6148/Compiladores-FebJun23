@@ -24,6 +24,19 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.3.1: Generación Cuádruplos (Expresiones Aritméticas)
+|  | Archivo | Descripción |
+| - | - | - |
+| M | scanner.l | M lectura de valores float
+| M | parser.y | + #include "intermediate.c" |
+| | | + push a pila de operadores y operaciones |
+| M | symtab.c | M cambio de estructura a pilas (parcial) |
+| M | semantics.c | + códigos int para cada operación especificados |
+| + | stack.c | Archivo con estructura y metodos para la creación y manipulación de pilas |
+| + | intermediate.c | Archivo con pilas de ejecución |
+
+- 
+
 ## v0.2.2: Tabla de Variables
 |  | Archivo | Descripción |
 | - | - | - |
