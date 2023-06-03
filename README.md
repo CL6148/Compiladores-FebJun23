@@ -24,6 +24,18 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.3.2: Modificación Tabla de Símbolos
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | M reflejar cambio a addVar |
+| M | symtab.c | M cambio de estructura a struct |
+| M | stack.c | M cambio a impresión de pilas |
+
+- Pendiente modificar estructura de tabla de variables a pilas
+- Pendiente insertar tabla de variables a estructura global/local permanente
+- Pendiente convertir tabla de variables a indice de memoria virtual
+- Pendiente lectura general de variables para generación de cuádruplos
+
 ## v0.3.1: Generación Cuádruplos (Expresiones Aritméticas)
 |  | Archivo | Descripción |
 | - | - | - |

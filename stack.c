@@ -99,16 +99,17 @@ void printStack(struct StackNode* root) {
 
         if (iPeek(root) != INT_MIN) {
             iTemp = iPeek(root);
+            printf("%12d", iTemp);
         }
         else if (fPeek(root) != -0.0) {
             fTemp = fPeek(root);
+            printf("%12f", fTemp);
         }
         else {
-            iTemp = INT_MIN;
             cTemp = cPeek(root);
+            printf("%12s", cTemp);
         }
         pop(&root);
-
-        printf("%12d\t%f\t%s\n", iTemp, fTemp, cTemp);
     }
+    printf("\n");
 }

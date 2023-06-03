@@ -51,15 +51,12 @@ program: PROG ID SEMI	{ printf("\t>----- Successful read of header\n"); }
 	block				{ printf("\t>----- Successful read of MAIN block\n"); };
 
 variables: VAR vars;
-vars: vars type vars1 vars2 SEMI 				{ clearSymtab(); }
+vars: vars type vars1 vars2 SEMI
 	| /* empty */;
 vars1: vars1 vars2 COMMA | /* empty */;
-vars2: ID										{ addVar($1, 0); }
-	| ID LBRACK CTEI RBRACK						{ addVar($1, 1);
-												  addDims($3); }
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ addVar($1, 2);
-												  addDims($3);
-												  addDims($6); };
+vars2: ID										{ addVar($1, 0, -1, -1); }
+	| ID LBRACK CTEI RBRACK						{ $3 < 1 ? yyerror(1) : addVar($1, 1, $3, -1); }
+	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ ($3 < 1) || ($6 < 1) ? yyerror(1) : addVar($1, 2, $3, $6); };
 
 functions: FUNC func;
 func: func func1 | /* empty */;
@@ -102,17 +99,17 @@ read1: ID
 writeStmt: WRITE expression SEMI;
 
 expression: rel expr1;
-expr1: ANDOP rel
-	| OROP rel
+expr1: ANDOP rel	{ iPush(&operator, 5); }
+	| OROP rel		{ iPush(&operator, 6); }
 	| /* empty */;
 
 rel: exp rel1;
-rel1: GREATH exp
-	| GREATH_E exp
-	| LESSTH exp
-	| LESSTH_E exp
-	| EQUOP exp
-	| NOTOP exp
+rel1: GREATH exp	{ iPush(&operator, 10); }
+	| GREATH_E exp	{ iPush(&operator, 12); }
+	| LESSTH exp	{ iPush(&operator, 9); }
+	| LESSTH_E exp	{ iPush(&operator, 11); }
+	| EQUOP exp		{ iPush(&operator, 8); }
+	| NOTOP exp		{ iPush(&operator, 7); }
 	| /* empty */;
 
 // ---------------------------------------------------------------------
@@ -144,8 +141,15 @@ varcteid: ID									{ cPush(&operand, $1); }
 
 %%
 
-void yyerror(){
-	fprintf(stderr, "Syntax error near line %d\n", yylineno);
+void yyerror(int errCode){
+	switch(errCode) {
+	case 1:
+		fprintf(stderr, "Array declaration near line %d must be at least '1'\n", yylineno);
+		break;
+	default:
+		fprintf(stderr, "Syntax error near line %d\n", yylineno);
+		break;
+	}
 	exit(1);
 }
 
@@ -160,11 +164,14 @@ int main (int argc, char *argv[]){
 	
 	printf("DEBUG:\tSuccessful parse of file\n");
 	printf("END: Compiled without error\n");
-/*
+
+
+	printSymtab();
 	printStack(operator);
 	printf("\n");
 	printStack(operand);
-*/
+
+
 	printf("\n");
 
 	return flag;

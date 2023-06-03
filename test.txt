@@ -1,32 +1,31 @@
 program LexParseTest;
 var
-    int x, y, z;
-    float a[5], b[2][3];
+    int x, z, a[5];
+    float y, b[2][3];
 
 func
-int function1 () {
-    var
-        int s4;
-    s4 = 5 + 6;
-}
-void function2 (int par1, int par2, float par3) {
-    var
-        par3 = -9.63 * -1.25;
-        par2 = 9 / 3;
-        par3 = -5;
-}
 
 main {
-    x = 6;
-    y = 2;
+    x = 1;
+    y = 2.0;
 
-    if (x >= 5) {
-        write x;
+    if (x <= 3) {
+        z = x + y;
     } else {
-        skip;
+        z = x - y;
     };
 
-    while (x == 0 || y < 4) do {
-        y = y - 1;
+    if (x >= 4) {
+        z = x * y;
+    } else {
+        z = x / y;
+    };
+
+    while (x != 5 && y == 6.0) do {
+        write x;
+    };
+
+    while (x < 0 || y > 4) do {
+        write y;
     };
 }
