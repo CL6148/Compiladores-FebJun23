@@ -10,9 +10,9 @@ main {
     y = 2.0;
 
     if (x <= 3) {
-        z = x + y;
+        z = b[1][2];
     } else {
-        z = x - y;
+        z = x;
     };
 
     if (x >= 4) {

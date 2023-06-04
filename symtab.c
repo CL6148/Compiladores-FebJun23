@@ -25,6 +25,7 @@ int searchVar(char *name) {
     for (int i = 0; i < counter; i++) {
         compare = strcmp(name, vars[i].name);
         if (compare == 0) {
+            // return vars[i].dirVir;
             return i;
         }
     }

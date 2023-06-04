@@ -127,7 +127,7 @@ term1: MULOP factor	{ iPush(&operator, 3); }	// { genQuad mul }
 factor: LPAREN exp RPAREN
 	| varctei		{ iPush(&operand, $1); }
 	| varctef		{ fPush(&operand, $1); }
-	| varcteid		{  };
+	| varcteid;
 
 varctei: CTEI
 	| SUBOP CTEI %prec UMINUS { $$ = - $2; };
@@ -135,9 +135,18 @@ varctei: CTEI
 varctef: CTEF
 	| SUBOP CTEF %prec UMINUS { $$ = - $2; };
 
-varcteid: ID									{ cPush(&operand, $1); }
-	| ID LBRACK CTEI RBRACK						{ cPush(&operand, $1); }
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ cPush(&operand, $1); };
+varcteid: ID									{ int exists = searchVar($1);
+												  (exists != -1) && (vars[exists].dimSize == 0) ? cPush(&operand, $1) : yyerror(2); }
+	| ID LBRACK CTEI RBRACK						{ int exists = searchVar($1);
+												  if ($3 < 0 || $3 >= vars[exists].dim[0]) {
+													yyerror(3);
+												  }
+												  (exists != -1) && (vars[exists].dimSize == 1) ? cPush(&operand, $1) : yyerror(2); }
+	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ int exists = searchVar($1);
+												  if ($3 < 0 || $3 >= vars[exists].dim[0] || $6 < 0 || $6 >= vars[exists].dim[1]) {
+													yyerror(3);
+												  }
+												  (exists != -1) && (vars[exists].dimSize == 2) ? cPush(&operand, $1) : yyerror(2); };
 
 %%
 
@@ -145,6 +154,12 @@ void yyerror(int errCode){
 	switch(errCode) {
 	case 1:
 		fprintf(stderr, "Array declaration near line %d must be at least '1'\n", yylineno);
+		break;
+	case 2:
+		fprintf(stderr, "ID indexed near line %d is incorrect\n", yylineno);
+		break;
+	case 3:
+		fprintf(stderr, "Array out of range near line %d\n", yylineno);
 		break;
 	default:
 		fprintf(stderr, "Syntax error near line %d\n", yylineno);
@@ -166,10 +181,10 @@ int main (int argc, char *argv[]){
 	printf("END: Compiled without error\n");
 
 
-	printSymtab();
-	printStack(operator);
-	printf("\n");
-	printStack(operand);
+	// printSymtab();
+	// printStack(operator);
+	// printf("\n");
+	// printStack(operand);
 
 
 	printf("\n");
