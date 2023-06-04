@@ -47,9 +47,7 @@ ctef	{digit}*"."{digit}+
 "]"			{return RBRACK; }
 "{"			{return LBRACE; }
 "}"			{return RBRACE; }
-":"			{return COLON; }
 ";"			{return SEMI; }
-"."			{return DOT; }
 ","			{return COMMA; }
 "="			{return ASSIGN; }
 
@@ -57,11 +55,8 @@ ctef	{digit}*"."{digit}+
 "program"	{return PROG; }
 "main"		{return MAIN; }
 "func"		{return FUNC; }
-"return"	{return RET; }
 
 "class"		{return CLASS; }
-"public"	{return PUB; }
-"private"	{return PRIV; }
 
 {id}	{
 		yylval.id = (char*) strdup(yytext);

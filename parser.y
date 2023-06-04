@@ -35,8 +35,7 @@ void yyerror();
 %token	NOTOP ANDOP OROP EQUOP LESSTH GREATH LESSTH_E GREATH_E
 %token	LPAREN RPAREN LBRACK RBRACK LBRACE RBRACE SEMI COMMA ASSIGN
 %token	VAR PROG MAIN FUNC
-%token	COLON RET DOT
-%token	CLASS PUB PRIV
+%token	CLASS
 
 %left	ADDOP SUBOP
 %left	MULOP DIVOP
@@ -77,19 +76,15 @@ block: LBRACE block1 RBRACE;
 block1: block1 statement | /* empty */;
 
 statement: assignment
-	| condition
-	| cycle
 	| readStmt
 	| writeStmt
+	| condition
+	| cycle
 	| SKIP SEMI;
 
 assignment: ID ASSIGN expression SEMI
 	| ID LBRACK CTEI RBRACK ASSIGN expression SEMI 
 	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK ASSIGN expression SEMI;
-
-condition:IF LPAREN expression RPAREN block ELSE block SEMI;
-
-cycle: WHILE LPAREN expression RPAREN DO block SEMI;
 
 readStmt: READ read1 SEMI;
 read1: ID
@@ -98,35 +93,49 @@ read1: ID
 
 writeStmt: WRITE expression SEMI;
 
-expression: rel expr1;
-expr1: ANDOP rel	{ iPush(&operator, 5); }
-	| OROP rel		{ iPush(&operator, 6); }
-	| /* empty */;
+// ---------------------------------------------------------------------
 
-rel: exp rel1;
-rel1: GREATH exp	{ iPush(&operator, 10); }
-	| GREATH_E exp	{ iPush(&operator, 12); }
-	| LESSTH exp	{ iPush(&operator, 9); }
-	| LESSTH_E exp	{ iPush(&operator, 11); }
-	| EQUOP exp		{ iPush(&operator, 8); }
-	| NOTOP exp		{ iPush(&operator, 7); }
-	| /* empty */;
+condition:IF LPAREN expression RPAREN block ELSE block SEMI;
+
+cycle: WHILE LPAREN expression RPAREN DO block SEMI;
 
 // ---------------------------------------------------------------------
 
-exp: term exp1;
-exp1: ADDOP term	{ iPush(&operator, 1); }	// { genQuad sum }
-	| SUBOP term	{ iPush(&operator, 2); }	// { genQuad sub }
+expression: rel expr1;
+expr1: expr2 rel	{ genQuad(); }
 	| /* empty */;
+expr2: ANDOP		{ iPush(&operator, 5); }
+	| OROP			{ iPush(&operator, 6); };
+
+rel: exp rel1;
+rel1: rel2 exp		{ genQuad(); }
+	| /* empty */;
+rel2: GREATH		{ iPush(&operator, 10); }
+	| GREATH_E		{ iPush(&operator, 12); }
+	| LESSTH		{ iPush(&operator, 9); }
+	| LESSTH_E		{ iPush(&operator, 11); }
+	| EQUOP			{ iPush(&operator, 8); }
+	| NOTOP			{ iPush(&operator, 7); };
+
+exp: term exp1;
+exp1: exp2 term		{ genQuad(); }
+	  exp1
+	| /* empty */;
+exp2: ADDOP			{ iPush(&operator, 1); }
+	| SUBOP			{ iPush(&operator, 2); };
 
 term: factor term1;
-term1: MULOP factor	{ iPush(&operator, 3); }	// { genQuad mul }
-	| DIVOP factor	{ iPush(&operator, 4); }	// { genQuad div }
+term1: term2 factor	{ genQuad(); }
+	   term1
 	| /* empty */;
+term2: MULOP		{ iPush(&operator, 3); }
+	| DIVOP			{ iPush(&operator, 4); };
 
 factor: LPAREN exp RPAREN
-	| varctei		{ iPush(&operand, $1); }
-	| varctef		{ fPush(&operand, $1); }
+	| varctei		{ iPush(&operand, $1);
+					  iPush(&types, 1); }
+	| varctef		{ fPush(&operand, $1);
+					  iPush(&types, 2); }
 	| varcteid;
 
 varctei: CTEI
@@ -136,17 +145,35 @@ varctef: CTEF
 	| SUBOP CTEF %prec UMINUS { $$ = - $2; };
 
 varcteid: ID									{ int exists = searchVar($1);
-												  (exists != -1) && (vars[exists].dimSize == 0) ? cPush(&operand, $1) : yyerror(2); }
+												  if ((exists != -1) && (vars[exists].dimSize == 0)) {
+												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+												  	  iPush(&types, vars[exists].data_type);
+												  }
+												  else {
+												  	  yyerror(2);
+												  } }
 	| ID LBRACK CTEI RBRACK						{ int exists = searchVar($1);
 												  if ($3 < 0 || $3 >= vars[exists].dim[0]) {
 													yyerror(3);
 												  }
-												  (exists != -1) && (vars[exists].dimSize == 1) ? cPush(&operand, $1) : yyerror(2); }
+												  if ((exists != -1) && (vars[exists].dimSize == 1)) {
+												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+												  	  iPush(&types, vars[exists].data_type);
+												  }
+												  else {
+												  	  yyerror(2);
+												  } }
 	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ int exists = searchVar($1);
 												  if ($3 < 0 || $3 >= vars[exists].dim[0] || $6 < 0 || $6 >= vars[exists].dim[1]) {
 													yyerror(3);
 												  }
-												  (exists != -1) && (vars[exists].dimSize == 2) ? cPush(&operand, $1) : yyerror(2); };
+												  if ((exists != -1) && (vars[exists].dimSize == 2)) {
+												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+												  	  iPush(&types, vars[exists].data_type);
+												  }
+												  else {
+												  	  yyerror(2);
+												  } };
 
 %%
 
@@ -182,9 +209,14 @@ int main (int argc, char *argv[]){
 
 
 	// printSymtab();
-	// printStack(operator);
-	// printf("\n");
-	// printStack(operand);
+	printf("Operator Stack\n");
+	printStack(operator);
+
+	printf("Operands Stack\n");
+	printStack(operand);
+
+	printf("Types Stack\n");
+	printStack(types);
 
 
 	printf("\n");

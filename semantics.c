@@ -4,7 +4,7 @@
 /*
 1   int
 2   float
-3   bool
+3   bool        represented as an integer value [0,1] along the specific data type bool
 --------------------------------
 -1 TypeMismatch
 -2 Undef Type
@@ -56,8 +56,6 @@ int semantic_cube(int operation, int type1, int type2) {
                 case 2:
                     switch(type2) {
                         case 1:
-                            return 2;
-                            break;
                         case 2:
                             return 2;
                             break;
@@ -78,13 +76,7 @@ int semantic_cube(int operation, int type1, int type2) {
             switch(type1) {
                 case 1:
                 case 2:
-                    switch(type2) {
-                        case 1:
-                        case 2:
-                        case 3:
-                            return -1;
-                            break;
-                    }
+                    return -1;
                     break;
                 case 3:
                     switch(type2) {

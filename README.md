@@ -24,6 +24,22 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.3.4: Verificación de Arreglos y Matrices
+|  | Archivo | Descripción |
+| - | - | - |
+| M | scanner.l | M Limpieza de tokens no utilizados |
+| M | parser.y | + Generación de cuadruplos para expresiones aritmeticas |
+| | | + Generación de cuadruplos para expresiones lógicas |
+| | | + Lógica semántica al leer variables y busqueda en tabla de símbolos |
+| M | semantics.c | M Limpieza de rutas |
+| M | intermediate.c | + Método para generar cuadruplos |
+| | | + Método para regresar símbolo operador utilizando código entero |
+
+- Pendiente insertar tabla de variables a estructura global/local permanente
+- Pendiente asignar dirección en memoria virtual a tabla de variables
+- Pendiente indexación de variables en cuadruplos por medio de memoria virtual
+- Pendiente impresión de cuadruplos a un archivo central (no consola)
+
 ## v0.3.3: Verificación de Arreglos y Matrices
 |  | Archivo | Descripción |
 | - | - | - |
@@ -31,9 +47,8 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 | | | + Códigos de error diferentes para semantica de arreglos/matrices |
 | M | symtab.c | M cambio de estructura a struct |
 
-- Pendiente modificar estructura de tabla de variables a pilas
 - Pendiente insertar tabla de variables a estructura global/local permanente
-- Pendiente convertir tabla de variables a indice de memoria virtual
+- Pendiente asignar dirección en memoria virtual a tabla de variables
 - Pendiente lectura general de variables para generación de cuádruplos
 
 
@@ -44,9 +59,8 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 | M | symtab.c | M cambio de estructura a struct |
 | M | stack.c | M cambio a impresión de pilas |
 
-- Pendiente modificar estructura de tabla de variables a pilas
 - Pendiente insertar tabla de variables a estructura global/local permanente
-- Pendiente convertir tabla de variables a indice de memoria virtual
+- Pendiente asignar dirección en memoria virtual a tabla de variables
 - Pendiente lectura general de variables para generación de cuádruplos
 
 ## v0.3.1: Generación Cuádruplos (Expresiones Aritméticas)
@@ -62,7 +76,7 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 
 - Pendiente modificar estructura de tabla de variables a pilas
 - Pendiente insertar tabla de variables a estructura global/local permanente
-- Pendiente convertir tabla de variables a indice de memoria virtual
+- Pendiente asignar dirección en memoria virtual a tabla de variables
 - Pendiente lectura general de variables para generación de cuádruplos
 
 ## v0.2.2: Tabla de Variables
