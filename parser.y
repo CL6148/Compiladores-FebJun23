@@ -45,7 +45,8 @@ void yyerror();
 %%
 
 program: PROG ID SEMI	{ printf("\t>----- Successful read of header\n"); }
-	variables			{ printf("\t>----- Successful read of variables block\n"); }
+	variables			{ printSymtab();
+						  printf("\t>----- Successful read of variables block\n"); }
 	functions MAIN		{ printf("\t>----- Successful read of functions block\n"); }
 	block				{ printf("\t>----- Successful read of MAIN block\n"); };
 
@@ -132,9 +133,11 @@ term2: MULOP		{ iPush(&operator, 3); }
 	| DIVOP			{ iPush(&operator, 4); };
 
 factor: LPAREN exp RPAREN
-	| varctei		{ iPush(&operand, $1);
+	| varctei		{ iConstants[iconst++] = $1;
+					  iPush(&operand, iconst + 15000);
 					  iPush(&types, 1); }
-	| varctef		{ fPush(&operand, $1);
+	| varctef		{ fConstants[fconst++] = $1;
+					  iPush(&operand, fconst + 17000);
 					  iPush(&types, 2); }
 	| varcteid;
 
@@ -146,7 +149,7 @@ varctef: CTEF
 
 varcteid: ID									{ int exists = searchVar($1);
 												  if ((exists != -1) && (vars[exists].dimSize == 0)) {
-												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+													  iPush(&operand, vars[exists].dirVir);
 												  	  iPush(&types, vars[exists].data_type);
 												  }
 												  else {
@@ -157,7 +160,7 @@ varcteid: ID									{ int exists = searchVar($1);
 													yyerror(3);
 												  }
 												  if ((exists != -1) && (vars[exists].dimSize == 1)) {
-												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+												  	  iPush(&operand, vars[exists].dirVir);
 												  	  iPush(&types, vars[exists].data_type);
 												  }
 												  else {
@@ -168,7 +171,7 @@ varcteid: ID									{ int exists = searchVar($1);
 													yyerror(3);
 												  }
 												  if ((exists != -1) && (vars[exists].dimSize == 2)) {
-												  	  vars[exists].data_type == 1 ? iPush(&operand, 999) : fPush(&operand, 999);	// replace with dirVir
+												  	  iPush(&operand, vars[exists].dirVir);
 												  	  iPush(&types, vars[exists].data_type);
 												  }
 												  else {
@@ -201,23 +204,19 @@ int main (int argc, char *argv[]){
 
 	printf("DEBUG:\tBeginning of PARSE\n");
 
+	FILE *f = fopen("instructions.txt", "w");
+	fprintf(f, "");
+	fclose(f);
+
+	FILE *g = fopen("variables.txt", "w");
+	fprintf(g, "");
+	fclose(g);
+
 	flag = yyparse();
 	fclose(yyin);
-	
+
 	printf("DEBUG:\tSuccessful parse of file\n");
 	printf("END: Compiled without error\n");
-
-
-	// printSymtab();
-	printf("Operator Stack\n");
-	printStack(operator);
-
-	printf("Operands Stack\n");
-	printStack(operand);
-
-	printf("Types Stack\n");
-	printStack(types);
-
 
 	printf("\n");
 

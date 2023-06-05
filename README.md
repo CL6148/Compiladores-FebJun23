@@ -24,6 +24,22 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.4.0: Direcciones Virtuales + Output Intermedio
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | M Indexación de variables y constantes por medio de dirección virtual |
+| M | symtab.c | + Manejo de valores constantes |
+| | | M printSymtab() imprime a archivo 'variables.txt' |
+| M | intermediate.c | M Indexación de variables y constantes por medio de dirección virtual |
+| | | M Limpieza de rutas para generar cuadruplos |
+| | | M Indexación de temporales |
+
+- Pendiente agregar total de temporales y constantes a archivo de variables
+- Pendiente cuadruplos ciclo/decisión
+- Pendiente cuadruplos funciones
+- Maquina Virtual: Memory Map
+- Maquina Virtual: Ejecución Expresiones Aritm/Logic/Relat
+
 ## v0.3.5: Cuadruplos estatutos lineales
 |  | Archivo | Descripción |
 | - | - | - |

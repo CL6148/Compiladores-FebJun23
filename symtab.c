@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
+int iCounter = 1;       // 11000
+int fCounter = 1;       // 13000
+int iconst = 0;         // 15000
+int fconst = 0;         // 17000
+
+int iConstants[1000];
+float fConstants[1000];
+
 struct variable {
     char *name;
     int data_type;
     int dimSize;
     int dim[2];
-    // int dirVir;
+    int dirVir;
 };
 
 struct variable vars[500];
@@ -25,7 +33,6 @@ int searchVar(char *name) {
     for (int i = 0; i < counter; i++) {
         compare = strcmp(name, vars[i].name);
         if (compare == 0) {
-            // return vars[i].dirVir;
             return i;
         }
     }
@@ -40,6 +47,14 @@ void addVar(char *name, int dimSize, int dim1, int dim2) {
         vars[counter].dimSize = dimSize;
         vars[counter].dim[0] = dim1;
         vars[counter].dim[1] = dim2;
+        if (currType == 1) {
+            vars[counter].dirVir = iCounter + 11000;
+            iCounter++;
+        }
+        else if (currType == 2) {
+            vars[counter].dirVir = fCounter + 13000;
+            fCounter++;
+        }
         counter++;
     }
     else {
@@ -60,19 +75,21 @@ void clearSymtab() {
         vars[i].name = '\0';
     }
     counter = 0;
+    iCounter = 1;
+    fCounter = 1;
 }
 
 void printSymtab() {
-    printf("\n************************************\n");
-    printf("ID\tType\tSize\tDim1\tDim2\n");
+    FILE *f = fopen("variables.txt", "a");
+    // printf("ID\tType\tDirVir\tSize\tDim1\tDim2\n");
     for (int i = 0; i < counter; i++) {
-        printf("%s\t%d\t%d", vars[i].name, vars[i].data_type, vars[i].dimSize);
+        fprintf(f, "%s\t%d\t%d\t%d", vars[i].name, vars[i].data_type, vars[i].dirVir, vars[i].dimSize);
         if (vars[i].dimSize > 0) {
             for (int j = 0; j < vars[i].dimSize; j++) {
-                printf("\t%d", vars[i].dim[j]);
+                fprintf(f, "\t%d", vars[i].dim[j]);
             }
         }
-        printf("\n");
+        fprintf(f, "\n");
     }
-    printf("\n");
+    fclose(f);
 }

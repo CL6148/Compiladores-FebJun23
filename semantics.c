@@ -4,7 +4,7 @@
 /*
 1   int
 2   float
-3   bool        represented as an integer value [0,1] along the specific data type bool
+3   bool
 --------------------------------
 -1 TypeMismatch
 -2 Undef Type
