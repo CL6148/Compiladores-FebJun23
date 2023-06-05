@@ -103,7 +103,7 @@ void printStack(struct StackNode* root) {
         }
         else if (fPeek(root) != -0.0) {
             fTemp = fPeek(root);
-            printf("%12f", fTemp);
+            printf("%12.2f", fTemp);
         }
         else {
             cTemp = cPeek(root);

@@ -23,10 +23,14 @@
 11  <=
 12  >=
 
+13  =
+14  read
+15  write
+
 */
 
 int semantic_cube(int operation, int type1, int type2) {
-    if (operation > 12 || operation < 1) {
+    if (operation > 15 || operation < 1) {
         return -3;
     }
     if (type1 > 3 || type1 < 1 || type2 > 3 || type2 < 1) {
@@ -144,5 +148,26 @@ int semantic_cube(int operation, int type1, int type2) {
                     break;
             }
             break;
+        case 13:
+            switch(type1) {
+            case 1:
+                switch(type2) {
+                case 1:
+                    return 1;
+                    break;
+                default:
+                    return -1;
+                    break;
+                }
+            case 2:
+                switch(type2) {
+                case 2:
+                    return 2;
+                    break;
+                default:
+                    return -1;
+                    break;
+                }
+            }
     }
 }

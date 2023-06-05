@@ -6,7 +6,7 @@ var
 func
 
 main {
-    x = 1 + 2.0;
+    x = 1 + 2;
     y = 2.1 - 2.6;
 
     if (x <= 3) {
@@ -22,10 +22,10 @@ main {
     };
 
     while (x != 5 && y == 6.0) do {
-        x = 0 + 0;
+        read y;
     };
 
     while (x < 0 || y > 4) do {
-        x = 0 + 0;
+        write x;
     };
 }

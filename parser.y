@@ -82,16 +82,16 @@ statement: assignment
 	| cycle
 	| SKIP SEMI;
 
-assignment: ID ASSIGN expression SEMI
-	| ID LBRACK CTEI RBRACK ASSIGN expression SEMI 
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK ASSIGN expression SEMI;
+// ---------------------------------------------------------------------
 
-readStmt: READ read1 SEMI;
-read1: ID
-	| ID LBRACK CTEI RBRACK
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK;
+assignment: varcteid ASSIGN { iPush(&operator, 13); }
+			expression SEMI	{ genQuadLin(1); };
 
-writeStmt: WRITE expression SEMI;
+readStmt: READ				{ iPush(&operator, 14); }
+		  varcteid SEMI		{ genQuadLin(2); };
+
+writeStmt: WRITE			{ iPush(&operator, 15); }
+		   expression SEMI	{ genQuadLin(2); };
 
 // ---------------------------------------------------------------------
 

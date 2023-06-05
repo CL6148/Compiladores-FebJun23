@@ -24,6 +24,18 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.3.5: Verificación de Arreglos y Matrices
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | + Generación de cuadruplos para estatutos lineales |
+| M | semantics.c | M Códigos y rutas operadores lineales |
+| M | intermediate.c | + Separación generación de cuadruplos con espacios |
+
+- Pendiente insertar tabla de variables a estructura global/local permanente
+- Pendiente asignar dirección en memoria virtual a tabla de variables
+- Pendiente indexación de variables en cuadruplos por medio de memoria virtual
+- Pendiente impresión de cuadruplos a un archivo central (no consola)
+
 ## v0.3.4: Verificación de Arreglos y Matrices
 |  | Archivo | Descripción |
 | - | - | - |

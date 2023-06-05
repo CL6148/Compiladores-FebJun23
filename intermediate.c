@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "stack.c"
 
-int tempCounter = 1;
+int quadCounter = 1;
 
 struct StackNode* operator = NULL;
 struct StackNode* operand = NULL;
@@ -47,6 +47,15 @@ char *operToChar(int oper) {
     case 12:
         operation = ">=";
         break;
+    case 13:
+        operation = "=";
+        break;
+    case 14:
+        operation = "read";
+        break;
+    case 15:
+        operation = "write";
+        break;
     default:
         operation = "Undef";
         break;
@@ -80,7 +89,7 @@ void genQuad() {
         printf("Undefined Operator\n");
         exit(1);
     }
-    printf("%s\t", operToChar(oper));
+    printf("%3d-\t%s\t", quadCounter, operToChar(oper));
 
     if (cPeek(operand) == "temp") {
         rType = 0;
@@ -138,4 +147,70 @@ void genQuad() {
     
     cPush(&operand, result);
     iPush(&types, resType);
+    quadCounter++;
+}
+
+void genQuadLin(int spaces) {
+    int oper, opType, resType;
+    int iOper, iRes;
+    float fOper, fRes;
+
+    if (spaces == 1) {
+        opType = iPeek(types);
+        pop(&types);
+    }
+    resType = iPeek(types);
+    pop(&types);
+
+    oper = iPeek(operator);
+    pop(&operator);
+
+    if (spaces == 1) {
+        resType = semantic_cube(oper, opType, resType);
+        if (resType == -1) {
+            printf("Type Mismatch\n");
+            exit(1);
+        }
+        else if (resType == -2) {
+            printf("Undefined Type\n");
+            exit(1);
+        }
+        else if (resType == -3) {
+            printf("Undefined Operator\n");
+            exit(1);
+        }
+    }
+    printf("%3d-\t%s\t", quadCounter, operToChar(oper));
+
+    if (spaces == 1) {
+        if (cPeek(operand) == "temp") {
+            printf("temp\t");
+        }
+        else if (opType == 1) {
+            iOper = iPeek(operand);
+            printf("%d\t", iOper);
+        }
+        else if (opType == 2) {
+            fOper = fPeek(operand);
+            printf("%.2f\t", fOper);
+        }
+        pop(&operand);
+    }
+    else {
+        printf("\t");
+    }
+    printf("\t");
+
+    if (resType == 1) {
+        iRes = iPeek(operand);
+        printf("%d\n", iRes);
+    }
+    else {
+        fRes = fPeek(operand);
+        printf("%.2f\n", fRes);
+    }
+    pop(&operand);
+    
+    // push quad to stack
+    quadCounter++;
 }
