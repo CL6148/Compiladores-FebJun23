@@ -30,11 +30,9 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
 | M | intermediate.c | + Lectura de cuádruplos por ruta de máquina virtual |
 | | | + Ejecución de operaciones Aritm/Logic/Relat y estatutos lineales |
 
-- Pendiente agregar total de temporales y constantes a archivo de variables
 - Pendiente cuadruplos ciclo/decisión
 - Pendiente cuadruplos funciones
-- Maquina Virtual: Memory Map
-- Maquina Virtual: Ejecución Expresiones Aritm/Logic/Relat
+- Pendiente cuadruplos Arr/Mat
 
 ## v0.4.0: Direcciones Virtuales + Output Intermedio
 |  | Archivo | Descripción |
