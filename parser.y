@@ -218,6 +218,8 @@ int main (int argc, char *argv[]){
 	printf("DEBUG:\tSuccessful parse of file\n");
 	printf("END: Compiled without error\n");
 
+	executeCode(iConstants, fConstants);
+
 	printf("\n");
 
 	return flag;

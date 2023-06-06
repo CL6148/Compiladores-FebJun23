@@ -21,7 +21,7 @@ main {
         skip;
     };
 
-    while (x != 5 && y == 6.0) do {
+    while (x != 5 && y == -0.5) do {
         read y;
     };
 
