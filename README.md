@@ -24,6 +24,15 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.5.0: Indexación de Arreglos/Matrices
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.c | M Inserción a pila de compilación dirección acorde a variable dimensionada |
+| M | symtab.c | M Caluclos para indexación a dirección virtual acorde a cariable dimensionada |
+
+- Pendiente cuadruplos ciclo/decisión
+- Pendiente cuadruplos funciones
+
 ## v0.4.1: Máquina Virtual - Expresiones y Estatutos Lineales
 |  | Archivo | Descripción |
 | - | - | - |
