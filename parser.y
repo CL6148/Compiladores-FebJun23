@@ -160,7 +160,7 @@ varcteid: ID									{ int exists = searchVar($1);
 													yyerror(3);
 												  }
 												  if ((exists != -1) && (vars[exists].dimSize == 1)) {
-												  	  iPush(&operand, vars[exists].dirVir);
+												  	  iPush(&operand, (vars[exists].dirVir + $3));
 												  	  iPush(&types, vars[exists].data_type);
 												  }
 												  else {
@@ -171,7 +171,7 @@ varcteid: ID									{ int exists = searchVar($1);
 													yyerror(3);
 												  }
 												  if ((exists != -1) && (vars[exists].dimSize == 2)) {
-												  	  iPush(&operand, vars[exists].dirVir);
+												  	  iPush(&operand, (vars[exists].dirVir + (vars[exists].dim[1] * $3 + $6)));
 												  	  iPush(&types, vars[exists].data_type);
 												  }
 												  else {

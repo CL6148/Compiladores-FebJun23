@@ -49,7 +49,7 @@ void addVar(char *name, int dimSize, int dim1, int dim2) {
         vars[counter].dim[1] = dim2;
         if (currType == 1) {
             vars[counter].dirVir = iCounter + 11000;
-            iCounter++;
+            iCounter = iCounter + abs(dim1 * dim2);
         }
         else if (currType == 2) {
             vars[counter].dirVir = fCounter + 13000;

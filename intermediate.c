@@ -192,7 +192,7 @@ void genQuadLin(int spaces) {
     quadCounter++;
 }
 
-void executeCode(int *iConstants, float *fConstants, int iconst, int fconst) {
+void executeCode(int *iConstants, float *fConstants) {
     int ivalArr[100];       // value in 1100X
     float fvalArr[100];
     int iTemp[100];

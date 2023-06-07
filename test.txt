@@ -1,31 +1,13 @@
 program LexParseTest;
 var
-    int x, z, a[5];
-    float y, b[2][3];
+    int a[2][3], x[4][7];
+
 
 func
 
 main {
-    x = 1 + 2;
-    y = 2.1 - 2.6;
+    a[1][2] = 5 + 4;
+    x[3][3] = 2 * a[1][2];
+    write x[3][3];
 
-    if (x <= 3) {
-        z = 0 + 0;
-    } else {
-        skip;
-    };
-
-    if (x >= 4) {
-        z = 0 + 0;
-    } else {
-        skip;
-    };
-
-    while (x != 5 && y == -0.5) do {
-        read y;
-    };
-
-    while (x < 0 || y > 4) do {
-        write x;
-    };
 }
