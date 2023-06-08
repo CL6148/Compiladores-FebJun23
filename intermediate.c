@@ -15,6 +15,7 @@ int qRes[500];
 struct StackNode* operator = NULL;
 struct StackNode* operand = NULL;
 struct StackNode* types = NULL;
+struct StackNode* jumps = NULL;
 
 char *operToChar(int oper) {
     char *operation;
@@ -63,6 +64,12 @@ char *operToChar(int oper) {
         break;
     case 15:
         operation = "write";
+        break;
+    case 16:
+        operation = "gotoF";
+        break;
+    case 17:
+        operation = "goto";
         break;
     default:
         operation = "Undef";
@@ -144,11 +151,18 @@ void genQuadLin(int spaces) {
         opType = iPeek(types);
         pop(&types);
     }
-    resType = iPeek(types);
-    pop(&types);
 
     oper = iPeek(operator);
     pop(&operator);
+
+    if (oper == 16 || oper == 17) {
+        resType = 4;
+        iPush(&jumps, quadCounter);
+    }
+    else {
+        resType = iPeek(types);
+        pop(&types);
+    }
 
     if (spaces == 1) {
         resType = semantic_cube(oper, opType, resType);
@@ -182,11 +196,17 @@ void genQuadLin(int spaces) {
     }
     fprintf(f, "\t");
 
-    iRes = iPeek(operand);
+    if (oper == 16 || oper == 17) {
+        iRes = -999;
+    }
+    else {
+        iRes = iPeek(operand);
+        pop(&operand);
+    }
+
     qRes[quadCounter-1] = iRes;
     fprintf(f, "%d\n", iRes);
-    pop(&operand);
-    
+
     fclose(f);
 
     quadCounter++;

@@ -24,10 +24,21 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.5.1: Generación de Cuádruplos: if/else + while/do
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | + Código generación de cuádruplos para estatutos if/else |
+| | | + Código generación de cuádruplos para estatutos while/do |
+| M | semantics.c | + Código numérico gotoF y goto |
+| M | intermediate.c | M acceso a generador de cuádruplos para acciones gotoF y goto |
+
+- Pendiente cuadruplos ciclo/decisión
+- Pendiente cuadruplos funciones
+
 ## v0.5.0: Indexación de Arreglos/Matrices
 |  | Archivo | Descripción |
 | - | - | - |
-| M | parser.c | M Inserción a pila de compilación dirección acorde a variable dimensionada |
+| M | parser.y | M Inserción a pila de compilación dirección acorde a variable dimensionada |
 | M | symtab.c | M Caluclos para indexación a dirección virtual acorde a cariable dimensionada |
 
 - Pendiente cuadruplos ciclo/decisión

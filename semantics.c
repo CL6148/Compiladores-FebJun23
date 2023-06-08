@@ -5,6 +5,7 @@
 1   int
 2   float
 3   bool
+3   jump
 --------------------------------
 -1 TypeMismatch
 -2 Undef Type
@@ -27,13 +28,16 @@
 14  read
 15  write
 
+16  gotoF
+17  goto
+
 */
 
 int semantic_cube(int operation, int type1, int type2) {
-    if (operation > 15 || operation < 1) {
+    if (operation > 17 || operation < 1) {
         return -3;
     }
-    if (type1 > 3 || type1 < 1 || type2 > 3 || type2 < 1) {
+    if (type1 > 3 || type1 < 1 || type2 > 4 || type2 < 1) {
         return -2;
     }
 
@@ -169,5 +173,26 @@ int semantic_cube(int operation, int type1, int type2) {
                     break;
                 }
             }
+            break;
+        case 16:
+        case 17:
+            switch(type1) {
+            case 1:
+            case 2:
+                return -1;
+                break;
+            case 3:
+                switch(type2) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        return -1;
+                        break;
+                    case 4:
+                        return 4;
+                        break;
+                }
+            }
+        break;
     }
 }

@@ -96,9 +96,48 @@ writeStmt: WRITE			{ iPush(&operator, 15); }
 
 // ---------------------------------------------------------------------
 
-condition:IF LPAREN expression RPAREN block ELSE block SEMI;
+condition: IF LPAREN expression RPAREN	{ int expType = iPeek(types);
+										  if (expType != 3) {
+										      yyerror(4);
+										  }
+										  else {
+											  iPush(&operator, 16);
+											  genQuadLin(1);
+										  } }
+		   block ELSE					{ int fls = iPeek(jumps);
+										  pop(&jumps);
+										  iPush(&operator, 17);
+										  genQuadLin(2);
+										  qRes[fls-1] = quadCounter;
+										  printf("\nQuad Rewrite (JUMP):\n");
+										  printf("%d- %d , %d , %d , %d\n", fls, op[fls-1], opL[fls-1], opR[fls-1], qRes[fls-1]); }
+		   block SEMI					{ int end = iPeek(jumps);
+		   								  pop(&jumps);
+										  qRes[end-1] = quadCounter;
+										  printf("\nQuad Rewrite (JUMP):\n");
+										  printf("%d- %d , %d , %d , %d\n", end, op[end-1], opL[end-1], opR[end-1], qRes[end-1]); };
 
-cycle: WHILE LPAREN expression RPAREN DO block SEMI;
+cycle: WHILE							{ iPush(&jumps, quadCounter); }
+	   LPAREN expression RPAREN			{ int expType = iPeek(types);
+	   									  if (expType != 3) {
+											  yyerror(4);
+										  }
+										  else {
+											  iPush(&operator, 16);
+											  genQuadLin(1);
+										  } }
+	   DO block SEMI					{ int end = iPeek(jumps);
+	   									  pop(&jumps);
+										  int resJ = iPeek(jumps);
+										  iPush(&operator, 17);
+										  genQuadLin(2);
+										  qRes[quadCounter-1] = resJ;
+										  qRes[end-1] = quadCounter;
+										  printf("\nQuad Rewrite (JUMP):\n");
+										  printf("%d- %d , %d , %d , %d\n", end, op[end-1], opL[end-1], opR[end-1], qRes[end-1]);
+
+										  printf("\nQuad Rewrite (JUMP):\n");
+										  printf("%d- %d , %d , %d , %d\n", quadCounter-1, op[quadCounter-1], opL[quadCounter-1], opR[quadCounter-1], qRes[quadCounter-1]); };
 
 // ---------------------------------------------------------------------
 
@@ -190,6 +229,9 @@ void yyerror(int errCode){
 		break;
 	case 3:
 		fprintf(stderr, "Array out of range near line %d\n", yylineno);
+		break;
+	case 4:
+		fprintf(stderr, "Type Mismatch\n");
 		break;
 	default:
 		fprintf(stderr, "Syntax error near line %d\n", yylineno);
