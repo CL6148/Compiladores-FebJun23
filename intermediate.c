@@ -12,6 +12,12 @@ int opL[500];
 int opR[500];
 int qRes[500];
 
+int ivalArr[100];
+float fvalArr[100];
+int iTemp[100];
+float fTemp[100];
+int bTemp[100];
+
 struct StackNode* operator = NULL;
 struct StackNode* operand = NULL;
 struct StackNode* types = NULL;
@@ -213,12 +219,6 @@ void genQuadLin(int spaces) {
 }
 
 void executeCode(int *iConstants, float *fConstants) {
-    int ivalArr[100];       // value in 1100X
-    float fvalArr[100];
-    int iTemp[100];
-    float fTemp[100];
-    int bTemp[100];
-
     for (int i = 0; i < quadCounter; i++) {
         switch (op[i]) {
         case 1:
@@ -2962,6 +2962,14 @@ void executeCode(int *iConstants, float *fConstants) {
             else if (qRes[i] > 13000 && qRes[i] < 15000) {
                 printf("WRITE FLOAT\t%.2f\n", fvalArr[qRes[i]-13001]);
             }
+            break;
+        case 16:
+            if (bTemp[opL[i]-32001] == 0) {
+                i = qRes[i]-2;
+            }
+            break;
+        case 17:
+            i = qRes[i]-2;
             break;
         }
     }

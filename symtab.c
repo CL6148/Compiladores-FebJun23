@@ -7,8 +7,8 @@ int fCounter = 1;       // 13000
 int iconst = 0;         // 15000
 int fconst = 0;         // 17000
 
-int iConstants[1000];
-float fConstants[1000];
+int iConstants[500];
+float fConstants[500];
 
 struct variable {
     char *name;
@@ -53,7 +53,7 @@ void addVar(char *name, int dimSize, int dim1, int dim2) {
         }
         else if (currType == 2) {
             vars[counter].dirVir = fCounter + 13000;
-            fCounter++;
+            fCounter = fCounter + abs(dim1 * dim2);
         }
         counter++;
     }

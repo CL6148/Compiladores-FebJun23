@@ -24,6 +24,12 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.5.2: Ejecución de instrucciones: if/else + while/do
+|  | Archivo | Descripción |
+| - | - | - |
+| M | symtab.c | M corrección de error en indexación de arrreglos tipo flotante |
+| M | intermediate.c | M manipulación de Instruction Pointer en ciclo de ejecución según instrucciones de saltos |
+
 ## v0.5.1: Generación de Cuádruplos: if/else + while/do
 |  | Archivo | Descripción |
 | - | - | - |

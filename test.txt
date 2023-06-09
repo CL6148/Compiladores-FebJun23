@@ -6,10 +6,26 @@ var
 func
 
 main {
-    x = 15 - 3;
-    y = 0.2 * 15.2;
-    while (x != 5 && y == -0.5) do {
+    x = 1 + 2;
+    y = 2.1 - 2.6;
+
+    if (x <= 3) {
         z = 0 + 0;
+    } else {
+        skip;
     };
 
+    if (x >= 4) {
+        z = 0 + 0;
+    } else {
+        skip;
+    };
+
+    while (x != 5 && y == -0.5) do {
+        read y;
+    };
+
+    while (x < 0 || y > 4) do {
+        write x;
+    };
 }

@@ -5,7 +5,7 @@
 1   int
 2   float
 3   bool
-3   jump
+4   jump
 --------------------------------
 -1 TypeMismatch
 -2 Undef Type

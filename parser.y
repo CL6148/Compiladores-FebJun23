@@ -131,13 +131,13 @@ cycle: WHILE							{ iPush(&jumps, quadCounter); }
 										  int resJ = iPeek(jumps);
 										  iPush(&operator, 17);
 										  genQuadLin(2);
-										  qRes[quadCounter-1] = resJ;
+										  qRes[quadCounter-2] = resJ;
 										  qRes[end-1] = quadCounter;
 										  printf("\nQuad Rewrite (JUMP):\n");
 										  printf("%d- %d , %d , %d , %d\n", end, op[end-1], opL[end-1], opR[end-1], qRes[end-1]);
 
 										  printf("\nQuad Rewrite (JUMP):\n");
-										  printf("%d- %d , %d , %d , %d\n", quadCounter-1, op[quadCounter-1], opL[quadCounter-1], opR[quadCounter-1], qRes[quadCounter-1]); };
+										  printf("%d- %d , %d , %d , %d\n", quadCounter-1, op[quadCounter-2], opL[quadCounter-2], opR[quadCounter-2], qRes[quadCounter-2]); };
 
 // ---------------------------------------------------------------------
 
@@ -258,7 +258,7 @@ int main (int argc, char *argv[]){
 	fclose(yyin);
 
 	printf("DEBUG:\tSuccessful parse of file\n");
-	printf("END: Compiled without error\n");
+	printf("END: Compiled without error\n\n");
 
 	executeCode(iConstants, fConstants);
 
