@@ -29,6 +29,7 @@ void yyerror();
 %type<ival> varctei
 %type<fval> varctef
 %type<id> varcteid
+%type<ival> index
 
 %token	INT FLOAT VOID
 %token	DO SKIP READ WRITE IF WHILE ELSE
@@ -186,14 +187,15 @@ varctei: CTEI
 varctef: CTEF
 	| SUBOP CTEF %prec UMINUS { $$ = - $2; };
 
-varcteid: ID									{ int exists = searchVar($1);
-												  if ((exists != -1) && (vars[exists].dimSize == 0)) {
-													  iPush(&operand, vars[exists].dirVir);
-												  	  iPush(&types, vars[exists].data_type);
-												  }
-												  else {
-												  	  yyerror(2);
-												  } }
+varcteid: ID										{ int exists = searchVar($1);
+													  if ((exists != -1) && (vars[exists].dimSize == 0)) {
+														  iPush(&operand, vars[exists].dirVir);
+													  	  iPush(&types, vars[exists].data_type);
+													  }
+													  else {
+													  	  yyerror(2);
+													  } }
+/*
 	| ID LBRACK CTEI RBRACK						{ int exists = searchVar($1);
 												  if ($3 < 0 || $3 >= vars[exists].dim[0]) {
 													yyerror(3);
@@ -215,7 +217,48 @@ varcteid: ID									{ int exists = searchVar($1);
 												  }
 												  else {
 												  	  yyerror(2);
+												  } }
+*/
+	| ID LBRACK index RBRACK						{ int exists = searchVar($1);
+													  // genQuadVER(S3, lSup)		lInf is always 0
+													  // genQuad (VER, exp, 0, lSup(A))
+													  
+													  iPush(&operand, vars[exists].dirVir);
+													  iPush(&types, vars[exists].data_type);
+													  iPush(&operator, 1);
+													  genQuad();
+													  
+													  int aux = iPeek(operand);
+													  pop(&operand);
+													  iPush(&operand, aux-10000);
+													  qRes[quadCounter-2] -= 10000; }
+	| ID LBRACK index RBRACK LBRACK index RBRACK	{ int exists = searchVar($1);
+
+													  // printf("INDEX2: %d\n", iPeek(operand));
+													  // pop(&operand);
+													  // printf("INDEX1: %d\n", iPeek(operand));
+
+													  iPush(&operand, vars[exists].dirVir);
+													  iPush(&types, vars[exists].data_type);
+													  iPush(&operator, 1);
+													  iPush(&operator, 1);
+													  genQuad();
+													  
+													  int aux1 = iPeek(operand);
+													  pop(&operand);
+													  iPush(&operand, aux1-10000);
+													  qRes[quadCounter-2] -= 10000;
+													  genQuad();
+
+													  int aux2 = iPeek(operand);
+													  pop(&operand);
+													  iPush(&operand, aux2-10000);
+													  qRes[quadCounter-2] -= 10000; };
+
+index: exp										{ if (iPeek(types) != 1) {
+													  yyerror(4);
 												  } };
+
 
 %%
 
@@ -228,7 +271,7 @@ void yyerror(int errCode){
 		fprintf(stderr, "ID indexed near line %d is incorrect\n", yylineno);
 		break;
 	case 3:
-		fprintf(stderr, "Array out of range near line %d\n", yylineno);
+		fprintf(stderr, "Error indexing array near line %d\n", yylineno);
 		break;
 	case 4:
 		fprintf(stderr, "Type Mismatch\n");

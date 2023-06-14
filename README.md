@@ -24,6 +24,16 @@ Una vez compilado, se ejecuta el archivo main.exe con el archivo de texto con el
     ./main {Archivo_de_Prueba.extension}
 
 ---
+## v0.6.0: Manejo de Arreglos
+|  | Archivo | Descripción |
+| - | - | - |
+| M | parser.y | M Cambio a estructura gramatical de arreglos para aceptar indices variables (Declaración sigue siendo fija) |
+| M | intermediate.c | M Cambios a máquina virtual para manejo de dirreciones pointer y manipulación de direcciones de arreglos |
+
+- Pendiente resolver direcciones de matrices
+- Pendiente resolver verificación de rangos
+- Pendiente crear estructura de funciones
+
 ## v0.5.2: Ejecución de instrucciones: if/else + while/do
 |  | Archivo | Descripción |
 | - | - | - |
