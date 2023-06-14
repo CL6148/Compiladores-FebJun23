@@ -1177,7 +1177,6 @@ void executeCode(int *iConstants, float *fConstants) {
                     bTemp[qRes[i]-32001] = 1;
                 }
             }
-            printf("%d : %d && %d\n", bTemp[qRes[i]-32001], bTemp[opL[i]-32001], bTemp[opR[i]-32001]);
             break;
         case 6:
             if (bTemp[opL[i]-32001] == 0) {
@@ -1196,1373 +1195,3292 @@ void executeCode(int *iConstants, float *fConstants) {
                     bTemp[qRes[i]-32001] = 1;
                 }
             }
-            printf("%d : %d || %d\n", bTemp[qRes[i]-32001], bTemp[opL[i]-32001], bTemp[opR[i]-32001]);
             break;
         case 7:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] != ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] != fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] != iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] != fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] != iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] != fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] != ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] != fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] != fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] != ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] != fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] != iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] != fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] != iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] != fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] != ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] != fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] != fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] != ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] != fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] != iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] != fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] != iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] != fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] != ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] != fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] != fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] != ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] != fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] != iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] != fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] != iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] != fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] != ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] != fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] != ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] != ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] != fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] != fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] != iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] != iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] != fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] != fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] != iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] != iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] != fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] != fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] != ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] != ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] != fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] != ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
         case 8:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] == ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] == fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] == iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] == fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] == iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] == fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] == ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] == fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] == fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] == ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] == fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] == iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] == fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] == iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] == fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] == ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] == fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] == fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] == ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] == fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] == iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] == fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] == iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] == fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] == ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] == fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] == fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] == ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] == fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] == iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] == fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] == iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] == fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] == ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] == fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] == ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] == ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] == fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] == fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] == iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] == iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] == fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] == fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] == iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] == iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] == fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] == fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] == ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] == ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] == fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] == ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
         case 9:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] < ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] < fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] < iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] < fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] < iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] < fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] < ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] < fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] < fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] < ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] < fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] < iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] < fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] < iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] < fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] < ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] < fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] < fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] < ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] < fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] < iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] < fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] < iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] < fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] < ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] < fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] < fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] < ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] < fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] < iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] < fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] < iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] < fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] < ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] < fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] < ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] < ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] < fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] < fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] < iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] < iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] < fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] < fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] < iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] < iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] < fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] < fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] < ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] < ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] < fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] < ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
         case 10:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] > ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] > fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] > iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] > fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] > iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] > fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] > ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] > fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] > fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] > ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] > fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] > iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] > fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] > iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] > fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] > ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] > fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] > fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] > ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] > fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] > iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] > fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] > iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] > fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] > ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] > fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] > fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] > ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] > fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] > iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] > fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] > iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] > fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] > ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] > fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] > ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] > ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] > fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] > fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] > iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] > iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] > fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] > fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] > iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] > iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] > fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] > fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] > ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] > ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] > fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] > ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
         case 11:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] <= ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] <= fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] <= iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] <= fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] <= iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] <= fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] <= ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] <= fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] <= fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] <= ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] <= fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] <= iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] <= fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] <= iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] <= fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] <= ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] <= fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] <= fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] <= ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] <= fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] <= iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] <= fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] <= iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] <= fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] <= ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] <= fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] <= fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] <= ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] <= fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] <= iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] <= fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] <= iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] <= fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] <= ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] <= fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] <= ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] <= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] <= fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] <= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] <= iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] <= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] <= fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] <= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] <= iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] <= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] <= fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] <= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] <= ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] <= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] <= fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] <= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
         case 12:
             if (opL[i] > 11000 && opL[i] < 13000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] >= ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] >= fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] >= iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] >= fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] >= iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] >= fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11001] >= ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11001] >= fvalArr[opR[i]-13000];
+                    if (ivalArr[opL[i]-11001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 13000 && opL[i] < 15000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fvalArr[opL[i]-13001] >= fvalArr[opR[i]-13000];
+                    if (fvalArr[opL[i]-13001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 15000 && opL[i] < 17000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] >= ivalArr[opR[i]-11001];
+                    if (iConstants[opL[i]-15001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] >= fvalArr[opR[i]-13001];
+                    if (iConstants[opL[i]-15001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] >= iConstants[opR[i]-15001];
+                    if (iConstants[opL[i]-15001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] >= fConstants[opR[i]-17001];
+                    if (iConstants[opL[i]-15001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] >= iTemp[opR[i]-30001];
+                    if (iConstants[opL[i]-15001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] >= fTemp[opR[i]-31001];
+                    if (iConstants[opL[i]-15001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iConstants[opL[i]-15001] >= ivalArr[opR[i]-11000];
+                    if (iConstants[opL[i]-15001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iConstants[opL[i]-15001] >= fvalArr[opR[i]-13000];
+                    if (iConstants[opL[i]-15001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 17000 && opL[i] < 19000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= ivalArr[opR[i]-11001];
+                    if (fConstants[opL[i]-17001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= fvalArr[opR[i]-13001];
+                    if (fConstants[opL[i]-17001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= iConstants[opR[i]-15001];
+                    if (fConstants[opL[i]-17001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= fConstants[opR[i]-17001];
+                    if (fConstants[opL[i]-17001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= iTemp[opR[i]-30001];
+                    if (fConstants[opL[i]-17001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= fTemp[opR[i]-31001];
+                    if (fConstants[opL[i]-17001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= ivalArr[opR[i]-11000];
+                    if (fConstants[opL[i]-17001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fConstants[opL[i]-17001] >= fvalArr[opR[i]-13000];
+                    if (fConstants[opL[i]-17001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 30000 && opL[i] < 31000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] >= ivalArr[opR[i]-11001];
+                    if (iTemp[opL[i]-30001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] >= fvalArr[opR[i]-13001];
+                    if (iTemp[opL[i]-30001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] >= iConstants[opR[i]-15001];
+                    if (iTemp[opL[i]-30001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] >= fConstants[opR[i]-17001];
+                    if (iTemp[opL[i]-30001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] >= iTemp[opR[i]-30001];
+                    if (iTemp[opL[i]-30001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] >= fTemp[opR[i]-31001];
+                    if (iTemp[opL[i]-30001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = iTemp[opL[i]-30001] >= ivalArr[opR[i]-11000];
+                    if (iTemp[opL[i]-30001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = iTemp[opL[i]-30001] >= fvalArr[opR[i]-13000];
+                    if (iTemp[opL[i]-30001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 31000 && opL[i] < 32000) {
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= ivalArr[opR[i]-11001];
+                    if (fTemp[opL[i]-31001] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= fvalArr[opR[i]-13001];
+                    if (fTemp[opL[i]-31001] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= iConstants[opR[i]-15001];
+                    if (fTemp[opL[i]-31001] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= fConstants[opR[i]-17001];
+                    if (fTemp[opL[i]-31001] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= iTemp[opR[i]-30001];
+                    if (fTemp[opL[i]-31001] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= fTemp[opR[i]-31001];
+                    if (fTemp[opL[i]-31001] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= ivalArr[opR[i]-11000];
+                    if (fTemp[opL[i]-31001] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
                     opR[i] = opR[i] - 8000;
-                    fTemp[qRes[i]-31001] = fTemp[opL[i]-31001] >= fvalArr[opR[i]-13000];
+                    if (fTemp[opL[i]-31001] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 20000 && opL[i] < 21000) {
                 opL[i] = opL[i] - 9000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] >= ivalArr[opR[i]-11001];
+                    if (ivalArr[opL[i]-11000] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] >= fvalArr[opR[i]-13001];
+                    if (ivalArr[opL[i]-11000] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] >= iConstants[opR[i]-15001];
+                    if (ivalArr[opL[i]-11000] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] >= fConstants[opR[i]-17001];
+                    if (ivalArr[opL[i]-11000] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] >= iTemp[opR[i]-30001];
+                    if (ivalArr[opL[i]-11000] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] >= fTemp[opR[i]-31001];
+                    if (ivalArr[opL[i]-11000] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-11000] >= ivalArr[opR[i]-11000];
+                    if (ivalArr[opL[i]-11000] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-11000] >= fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (ivalArr[opL[i]-11000] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             else if (opL[i] > 21000 && opL[i] < 22000) {
                 opL[i] = opL[i] - 8000;
                 if (opR[i] > 11000 && opR[i] < 13000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] >= ivalArr[opR[i]-11001];
+                    if (fvalArr[opL[i]-13000] >= ivalArr[opR[i]-11001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 13000 && opR[i] < 15000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] >= fvalArr[opR[i]-13001];
+                    if (fvalArr[opL[i]-13000] >= fvalArr[opR[i]-13001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 15000 && opR[i] < 17000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] >= iConstants[opR[i]-15001];
+                    if (fvalArr[opL[i]-13000] >= iConstants[opR[i]-15001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 17000 && opR[i] < 19000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] >= fConstants[opR[i]-17001];
+                    if (fvalArr[opL[i]-13000] >= fConstants[opR[i]-17001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 30000 && opR[i] < 31000) {
-                    iTemp[qRes[i]-30001] = ivalArr[opL[i]-13000] >= iTemp[opR[i]-30001];
+                    if (fvalArr[opL[i]-13000] >= iTemp[opR[i]-30001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 31000 && opR[i] < 32000) {
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] >= fTemp[opR[i]-31001];
+                    if (fvalArr[opL[i]-13000] >= fTemp[opR[i]-31001]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 20000 && opR[i] < 21000) {
                     opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] >= ivalArr[opR[i]-11000];
+                    if (fvalArr[opL[i]-13000] >= ivalArr[opR[i]-11000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
                 else if (opR[i] > 21000 && opR[i] < 22000) {
-                    opR[i] = opR[i] - 9000;
-                    fTemp[qRes[i]-31001] = ivalArr[opL[i]-13000] >= fvalArr[opR[i]-13000];
+                    opR[i] = opR[i] - 8000;
+                    if (fvalArr[opL[i]-13000] >= ivalArr[opR[i]-13000]) {
+                        bTemp[qRes[i]-32001] = 1;
+                    }
+                    else {
+                        bTemp[qRes[i]-32001] = 0;
+                    }
                 }
             }
             break;
@@ -2572,15 +4490,12 @@ void executeCode(int *iConstants, float *fConstants) {
                 iAux -= 11001;
                 if (opL[i] > 11000 && opL[i] < 13000) {
                     ivalArr[iAux] = ivalArr[opL[i]-11001];
-                    printf("int[%d] = %d\n", iAux, ivalArr[opL[i]-11001]);
                 }
                 else if (opL[i] > 15000 && opL[i] < 17000) {
                     ivalArr[iAux] = iConstants[opL[i]-15001];
-                    printf("int[%d] = %d\n", iAux, iConstants[opL[i]-15001]);
                 }
                 else if (opL[i] > 30000 && opL[i] < 31000) {
                     ivalArr[iAux] = iTemp[opL[i]-30001];
-                    printf("int[%d] = %d\n", iAux, iTemp[opL[i]-30001]);
                 }
             }
             else if (qRes[i] > 21000 && qRes[i] < 22000) {
@@ -2588,53 +4503,42 @@ void executeCode(int *iConstants, float *fConstants) {
                 fAux -= 13001;
                 if (opL[i] > 13000 && opL[i] < 15000) {
                     fvalArr[fAux] = fvalArr[opL[i]-13001];
-                    printf("float[%d] = %.2f\n", fAux, fvalArr[opL[i]-13001]);
                 }
                 else if (opL[i] > 17000 && opL[i] < 19000) {
                     fvalArr[fAux] = ivalArr[opL[i]-17001];
-                    printf("float[%d] = %.2f\n", fAux, fConstants[opL[i]-17001]);
                 }
                 else if (opL[i] > 31000 && opL[i] < 32000) {
                     fvalArr[fAux] = fvalArr[opL[i]-31001];
-                    printf("float[%d] = %.2f\n", fAux, fTemp[opL[i]-31001]);
                 }
             }
             else {
                 if (opL[i] > 11000 && opL[i] < 13000) {
                     ivalArr[qRes[i]-11001] = ivalArr[opL[i]-11001];
-                    printf("int[%d] = %d\n", qRes[i]-11001, ivalArr[opL[i]-11001]);
                 }
                 else if (opL[i] > 13000 && opL[i] < 15000) {
                     fvalArr[qRes[i]-13001] = fvalArr[opL[i]-13001];
-                    printf("float[%d] = %.2f\n", qRes[i]-13001, fvalArr[opL[i]-13001]);
                 }
                 else if (opL[i] > 15000 && opL[i] < 17000) {
                     ivalArr[qRes[i]-11001] = iConstants[opL[i]-15001];
-                    printf("int[%d] = %d\n", qRes[i]-11001, iConstants[opL[i]-15001]);
                 }
                 else if (opL[i] > 17000 && opL[i] < 19000) {
                     fvalArr[qRes[i]-13001] = fConstants[opL[i]-17001];
-                    printf("float[%d] = %.2f\n", qRes[i]-13001, fConstants[opL[i]-17001]);
                 }
                 else if (opL[i] > 30000 && opL[i] < 31000) {
                     ivalArr[qRes[i]-11001] = iTemp[opL[i]-30001];
-                    printf("int[%d] = %d\n", qRes[i]-11001, iTemp[opL[i]-30001]);
                 }
                 else if (opL[i] > 31000 && opL[i] < 32000) {
                     fvalArr[qRes[i]-13001] = fTemp[opL[i]-31001];
-                    printf("float[%d] = %.2f\n", qRes[i]-13001, fTemp[opL[i]-31001]);
                 }
                 else if (opL[i] > 20000 && opL[i] < 21000) {
                     int iAux = iTemp[opL[i]-20001];
                     iAux -= 11001;
                     ivalArr[qRes[i]-11001] = ivalArr[iAux];
-                    printf("int[%d] = %d\n", qRes[i]-11001, ivalArr[iAux]);
                 }
                 else if (opL[i] > 21000 && opL[i] < 22000) {
                     int fAux = fTemp[opL[i]-21001];
                     fAux -= 13001;
                     fvalArr[qRes[i]-13001] = fvalArr[fAux];
-                    printf("float[%d] = %.2f\n", qRes[i]-11001, fvalArr[fAux]);
                 }
             }
             break;

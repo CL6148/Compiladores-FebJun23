@@ -130,8 +130,10 @@ cycle: WHILE							{ iPush(&jumps, quadCounter); }
 	   DO block SEMI					{ int end = iPeek(jumps);
 	   									  pop(&jumps);
 										  int resJ = iPeek(jumps);
+										  pop(&jumps);
 										  iPush(&operator, 17);
 										  genQuadLin(2);
+										  pop(&jumps);
 										  qRes[quadCounter-2] = resJ;
 										  qRes[end-1] = quadCounter;
 										  printf("\nQuad Rewrite (JUMP):\n");
@@ -195,30 +197,7 @@ varcteid: ID										{ int exists = searchVar($1);
 													  else {
 													  	  yyerror(2);
 													  } }
-/*
-	| ID LBRACK CTEI RBRACK						{ int exists = searchVar($1);
-												  if ($3 < 0 || $3 >= vars[exists].dim[0]) {
-													yyerror(3);
-												  }
-												  if ((exists != -1) && (vars[exists].dimSize == 1)) {
-												  	  iPush(&operand, (vars[exists].dirVir + $3));
-												  	  iPush(&types, vars[exists].data_type);
-												  }
-												  else {
-												  	  yyerror(2);
-												  } }
-	| ID LBRACK CTEI RBRACK LBRACK CTEI RBRACK	{ int exists = searchVar($1);
-												  if ($3 < 0 || $3 >= vars[exists].dim[0] || $6 < 0 || $6 >= vars[exists].dim[1]) {
-													yyerror(3);
-												  }
-												  if ((exists != -1) && (vars[exists].dimSize == 2)) {
-												  	  iPush(&operand, (vars[exists].dirVir + (vars[exists].dim[1] * $3 + $6)));
-												  	  iPush(&types, vars[exists].data_type);
-												  }
-												  else {
-												  	  yyerror(2);
-												  } }
-*/
+
 	| ID LBRACK index RBRACK						{ int exists = searchVar($1);
 													  // genQuadVER(S3, lSup)		lInf is always 0
 													  // genQuad (VER, exp, 0, lSup(A))
